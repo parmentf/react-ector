@@ -1,7 +1,21 @@
 {
   "name": "react-ector",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "author": "François PARMENTIER",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parmentf/react-ector.git"
+  },
+  "keywords": [
+    "chatterbot",
+    "learning",
+    "web"
+  ],
+  "bugs": {
+    "url": "https://github.com/parmentf/react-ector/issues"
+  },
+  "homepage": "https://github.com/parmentf/react-ector#readme",
   "dependencies": {
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
