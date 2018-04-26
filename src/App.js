@@ -17,22 +17,44 @@ class PastEntries extends Component {
   }
 }
 
+class Entry extends Component {
+  render() {
+    return (
+      <div>
+        <label>Entry:</label>
+        <input type="text" onKeyUp={this.props.onKeyUp}/>
+      </div>
+    );
+  }
+}
+
+class User extends Component {
+  render() {
+    return (
+      <div>
+        <input
+          type="text"
+          value={this.props.name}
+          onChange={this.props.onChange}
+        />
+      </div>
+    );
+  }
+}
+
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      username: 'François',
-      entries: [{
-        utterer: 'ECTOR',
-        value: 'Hello you!'
-      }, {
-        utterer: 'François',
-        value: 'Hello ECTOR!'
-      }]
-    }
+  state = {
+    username: 'François',
+    entries: [{
+      utterer: 'ECTOR',
+      value: 'Hello you!'
+    }, {
+      utterer: 'François',
+      value: 'Hello ECTOR!'
+    }]
   }
 
-  addEntry (entry) {
+  addEntry(entry) {
     this.setState({
       entries: [
         ...this.state.entries,
@@ -45,6 +67,18 @@ class App extends Component {
     })
   }
 
+  changeUser = event => {
+    const username = event.target.value;
+    this.setState({username});
+  }
+
+  treatEntry = event => {
+    if(event.keyCode === 13) {
+      this.addEntry(event.target.value)
+      event.target.value = '';
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -52,15 +86,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">ECTOR the Chatterbotor</h1>
         </header>
-        <div>
-          <label>Entry:</label>
-          <input type="text" onKeyUp={e => {
-            if(e.keyCode === 13) {
-              this.addEntry(e.target.value)
-              e.target.value = '';
-            }
-          }}/>
-        </div>
+
+        <User onChange={this.changeUser} name={this.state.username} />
+        <Entry onKeyUp={this.treatEntry} />
         <PastEntries list={this.state.entries}/>
       </div>
     );
