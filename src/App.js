@@ -6,7 +6,11 @@ class PastEntries extends Component {
   render() {
     return (
       <ul style={{textAlign: 'left'}}>
-        {this.props.list.reverse().slice(0,10).map((entry, i) => (
+        {this.props.list
+          .sort((a, b) => a.created - b.created)
+          .reverse()
+          .slice(0,10)
+          .map((entry, i) => (
           <li key={i}>{entry.utterer}: {entry.value}</li>
         ))}
         {this.props.list.length > 10 &&
@@ -53,10 +57,8 @@ class App extends Component {
     username: 'François',
     entries: [{
       utterer: 'ECTOR',
-      value: 'Hello you!'
-    }, {
-      utterer: 'François',
-      value: 'Hello ECTOR!'
+      value: 'Hello you!',
+      created: new Date()
     }]
   }
 
