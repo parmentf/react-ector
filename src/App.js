@@ -20,9 +20,12 @@ class PastEntries extends Component {
 class Entry extends Component {
   render() {
     return (
-      <div>
+      <div style={{display: 'inline-block'}}>
         <label>Entry:</label>
-        <input type="text" onKeyUp={this.props.onKeyUp}/>
+        <input
+          type="text"
+          autoFocus
+          onKeyUp={this.props.onKeyUp}/>
       </div>
     );
   }
@@ -31,7 +34,8 @@ class Entry extends Component {
 class User extends Component {
   render() {
     return (
-      <div>
+      <div style={{display: 'inline-block'}}>
+        <label>Name:</label>
         <input
           type="text"
           value={this.props.name}
