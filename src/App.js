@@ -24,6 +24,7 @@ class Entry extends Component {
         <label>Entry:</label>
         <input
           type="text"
+          size="50"
           autoFocus
           onKeyUp={this.props.onKeyUp}/>
       </div>
@@ -38,6 +39,7 @@ class User extends Component {
         <label>Name:</label>
         <input
           type="text"
+          size="10"
           value={this.props.name}
           onChange={this.props.onChange}
         />
