@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './Robot.svg';
 import './App.css';
 
-const backend = process.env.BACKEND || 'http://localhost:5000';
+const backend = process.env.REACT_APP_BACKEND || 'http://localhost:5000';
 
 class PastEntries extends Component {
   render() {
