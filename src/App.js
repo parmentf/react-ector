@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import logo from './Robot.svg';
 import './App.css';
 
+const backend = (process.env.BACK_PROTOCOL || 'http') + '://'
+              + (process.env.BACK_HOST || 'localhost') + ':' 
+              + (process.env.BACK_PORT || 5000);
+
 class PastEntries extends Component {
   render() {
     return (
@@ -62,12 +66,12 @@ class App extends Component {
     }]
   }
 
-  addEntry(entry) {
+  addEntry(entry, utterer = this.state.username) {
     this.setState({
       entries: [
         ...this.state.entries,
         {
-          utterer: this.state.username,
+          utterer,
           value: entry,
           created: new Date()
         }
@@ -82,7 +86,15 @@ class App extends Component {
 
   treatEntry = event => {
     if(event.keyCode === 13) {
-      this.addEntry(event.target.value)
+      this.addEntry(event.target.value);
+      const backendURL = `${backend}/v1/reply/${this.state.username}/${event.target.value}`;
+      fetch(backendURL, {
+        mode: 'cors'
+      })
+      .then(response => response.json())
+      .then(json => {
+        this.addEntry(json.sentence, 'ECTOR');
+      });
       event.target.value = '';
     }
   }
