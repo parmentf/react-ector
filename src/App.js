@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import logo from './Robot.svg';
 import './App.css';
 
-const backend = (process.env.BACK_PROTOCOL || 'http') + '://'
-              + (process.env.BACK_HOST || 'localhost') + ':' 
-              + (process.env.BACK_PORT || 5000);
+const backend = process.env.BACKEND || 'http://localhost:5000';
 
 class PastEntries extends Component {
   render() {
