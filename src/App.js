@@ -85,7 +85,7 @@ class App extends Component {
   treatEntry = event => {
     if(event.keyCode === 13) {
       this.addEntry(event.target.value);
-      const backendURL = `${backend}/v1/reply/${this.state.username}/${event.target.value}`;
+      const backendURL = `${backend}/v1/reply/${this.state.username}/${encodeURIComponent(event.target.value)}`;
       fetch(backendURL, {
         mode: 'cors'
       })
