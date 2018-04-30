@@ -4,55 +4,45 @@ import './App.css';
 
 const backend = process.env.REACT_APP_BACKEND || 'http://localhost:5000';
 
-class PastEntries extends Component {
-  render() {
-    return (
-      <ul style={{textAlign: 'left'}}>
-        {this.props.list
-          .sort((a, b) => a.created - b.created)
-          .reverse()
-          .slice(0,10)
-          .map((entry, i) => (
-          <li key={i}>{entry.utterer}: {entry.value}</li>
-        ))}
-        {this.props.list.length > 10 &&
-          <li>...</li>
-        }
-      </ul>
-    );
-  }
-}
+const PastEntries = ({list}) => (
+  <ul style={{textAlign: 'left'}}>
+    {list
+      .sort((a, b) => a.created - b.created)
+      .reverse()
+      .slice(0,10)
+      .map((entry, i) => (
+      <li key={i}>{entry.utterer}: {entry.value}</li>
+    ))}
+    {list.length > 10 &&
+      <li>...</li>
+    }
+  </ul>
+);
 
-class Entry extends Component {
-  render() {
-    return (
-      <div style={{display: 'inline-block'}}>
-        <label>Entry:</label>
-        <input
-          type="text"
-          size="50"
-          autoFocus
-          onKeyUp={this.props.onKeyUp}/>
-      </div>
-    );
-  }
-}
+const Entry = ({onKeyUp}) => 
+  (
+    <div style={{display: 'inline-block'}}>
+      <label>Entry:</label>
+      <input
+        type="text"
+        size="50"
+        autoFocus
+        onKeyUp={onKeyUp}/>
+    </div>
+  );
 
-class User extends Component {
-  render() {
-    return (
-      <div style={{display: 'inline-block'}}>
-        <label>Name:</label>
-        <input
-          type="text"
-          size="10"
-          value={this.props.name}
-          onChange={this.props.onChange}
-        />
-      </div>
-    );
-  }
-}
+const User = ({name, onChange}) =>
+ (
+    <div style={{display: 'inline-block'}}>
+      <label>Name:</label>
+      <input
+        type="text"
+        size="10"
+        value={name}
+        onChange={onChange}
+      />
+    </div>
+  );
 
 class App extends Component {
   state = {
