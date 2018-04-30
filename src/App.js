@@ -19,30 +19,28 @@ const PastEntries = ({list}) => (
   </ul>
 );
 
-const Entry = ({onKeyUp}) => 
-  (
-    <div style={{display: 'inline-block'}}>
-      <label>Entry:</label>
-      <input
-        type="text"
-        size="50"
-        autoFocus
-        onKeyUp={onKeyUp}/>
-    </div>
-  );
+const Entry = ({onKeyUp}) => (
+  <div style={{display: 'inline-block'}}>
+    <label>Entry:</label>
+    <input
+      type="text"
+      size="50"
+      autoFocus
+      onKeyUp={onKeyUp}/>
+  </div>
+);
 
-const User = ({name, onChange}) =>
- (
-    <div style={{display: 'inline-block'}}>
-      <label>Name:</label>
-      <input
-        type="text"
-        size="10"
-        value={name}
-        onChange={onChange}
-      />
-    </div>
-  );
+const User = ({name, onChange}) => (
+  <div style={{display: 'inline-block'}}>
+    <label>Name:</label>
+    <input
+      type="text"
+      size="10"
+      value={name}
+      onChange={onChange}
+    />
+  </div>
+);
 
 class App extends Component {
   state = {
